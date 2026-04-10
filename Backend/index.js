@@ -5,6 +5,9 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/error');
+const bmiRoutes = require('./routes/BMIRoutes');
+const pharmacyRoutes = require('./routes/pharmacyRoutes');
+const medicationRoutes = require('./routes/medicationRoutes');
 
 // Load env vars
 dotenv.config();
@@ -34,6 +37,9 @@ const { validateSignup, validateLogin } = require('./middleware/validator');
 app.post('/api/auth/signup', validateSignup, require('./controllers/authController').signup);
 app.post('/api/auth/login', validateLogin, require('./controllers/authController').login);
 app.use('/api/auth', auth);
+app.use('/api/bmi', bmiRoutes);
+app.use('/api/pharmacies', pharmacyRoutes);
+app.use('/api/medications', medicationRoutes);
 
 // Error Handler Middleware (MUST be last)
 app.use(errorHandler);
