@@ -1,0 +1,26 @@
+const { body, validationResult } = require('express-validator');
+const ErrorResponse = require('../utils/errorResponse');
+
+exports.validateSignup = [
+  body('email').isEmail().withMessage('Please include a valid email'),
+  body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return next(new ErrorResponse(errors.array()[0].msg, 400));
+    }
+    next();
+  }
+];
+
+exports.validateLogin = [
+  body('email').isEmail().withMessage('Please include a valid email'),
+  body('password').exists().withMessage('Password is required'),
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return next(new ErrorResponse(errors.array()[0].msg, 400));
+    }
+    next();
+  }
+];
