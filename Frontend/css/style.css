@@ -1283,3 +1283,796 @@ tr:hover td {
   font-size: 0.78rem;
   color: var(--text-secondary);
 }
+
+/* ===== ============== MEDICINE PAGE ============== ===== */
+.medicine-header {
+  margin-bottom: 28px;
+}
+
+.medicine-title {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 4px;
+}
+
+.medicine-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 24px;
+}
+
+.comparison-table .verdict-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.verdict-popular {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.verdict-best {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.verdict-cheap {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+[data-theme="dark"] .verdict-popular {
+  background: #1e3a5f;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .verdict-best {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+[data-theme="dark"] .verdict-cheap {
+  background: #064e3b;
+  color: #6ee7b7;
+}
+
+/* Affordability card */
+.affordability-card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.savings-amount {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: var(--grad-green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bar-compare {
+  margin-top: 14px;
+}
+
+.bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.bar-track {
+  height: 8px;
+  background: var(--border-color);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.bar-fill-brand {
+  width: 85%;
+  background: var(--grad-primary);
+  height: 100%;
+  border-radius: 10px;
+}
+
+.bar-fill-generic {
+  width: 22%;
+  background: var(--grad-green);
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* Interaction warning */
+.interaction-warn {
+  background: linear-gradient(135deg, #fff7ed, #fef2f2);
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+[data-theme="dark"] .interaction-warn {
+  background: linear-gradient(135deg, #451a03, #450a0a);
+  border-color: #7c2d12;
+}
+
+.warn-title {
+  font-weight: 700;
+  color: #c2410c;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.warn-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ===== ============== PHARMACY PAGE ============== ===== */
+.pharmacy-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 24px;
+}
+
+.map-placeholder {
+  background: linear-gradient(135deg, #e0e7ff, #dbeafe);
+  border-radius: var(--radius);
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .map-placeholder {
+  background: linear-gradient(135deg, #1e3a5f, #1e293b);
+}
+
+.map-pin {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.pharmacy-card {
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  transition: var(--transition);
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.pharmacy-card:hover {
+  border-color: var(--blue-600);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.pharmacy-card .ph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 6px;
+}
+
+.ph-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.ph-price {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  background: var(--grad-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ph-addr {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.ph-meta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+/* ===== ============== HEALTH DASHBOARD ============== ===== */
+.greeting-banner {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  margin-bottom: 28px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.greeting-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.greeting-sub {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.medicine-tracker {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+}
+
+.med-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  margin-bottom: 10px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.med-item:hover {
+  background: var(--bg-primary);
+  border-color: var(--blue-600);
+}
+
+.med-item.done {
+  background: linear-gradient(135deg, #f0fdf4, #ecfeff);
+  border-color: #6ee7b7;
+}
+
+[data-theme="dark"] .med-item.done {
+  background: linear-gradient(135deg, #052e16, #083344);
+  border-color: #059669;
+}
+
+.med-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--grad-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: white;
+  flex-shrink: 0;
+}
+
+.med-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.med-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.med-check {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.med-item.done .med-check {
+  background: var(--grad-green);
+  border-color: transparent;
+  color: white;
+}
+
+/* Exercise Cards */
+.exercise-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  transition: var(--transition);
+}
+
+.exercise-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.exercise-img {
+  height: 140px;
+  background: var(--grad-card1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.exercise-body {
+  padding: 16px;
+}
+
+.exercise-tag {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--grad-primary);
+  color: white;
+  margin-bottom: 8px;
+}
+
+.exercise-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* ===== ============== DIET PAGE ============== ===== */
+.diet-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+}
+
+.meal-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  margin-bottom: 14px;
+  transition: var(--transition);
+}
+
+.meal-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.meal-header {
+  padding: 14px 18px;
+  background: var(--grad-card1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meal-type {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue-600);
+}
+
+.meal-name {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.meal-body {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.meal-emoji {
+  font-size: 2.2rem;
+}
+
+.meal-info {
+  flex: 1;
+}
+
+.meal-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.nutrition-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nutr-pill {
+  padding: 3px 10px;
+  background: var(--bg-primary);
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+/* Hydration */
+.hydration-bar {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.water-drop {
+  font-size: 1.4rem;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.water-drop.filled {
+  filter: none;
+}
+
+.water-drop.empty {
+  filter: grayscale(1) opacity(0.3);
+}
+
+/* ===== ============== BMI PAGE ============== ===== */
+.bmi-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.bmi-meter {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.bmi-arc {
+  width: 100%;
+}
+
+.bmi-result-value {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 800;
+  margin-top: -20px;
+  margin-bottom: 4px;
+}
+
+.bmi-category {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* ===== ============== AI EXERCISE PAGE ============== ===== */
+.ai-chat-wrap {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-header {
+  padding: 16px 20px;
+  background: var(--grad-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.msg {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.msg-ai {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border-radius: 4px 16px 16px 16px;
+  align-self: flex-start;
+  border: 1px solid var(--border-color);
+}
+
+.msg-user {
+  background: var(--grad-primary);
+  color: white;
+  border-radius: 16px 4px 16px 16px;
+  align-self: flex-end;
+}
+
+.chat-input-row {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-row input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 30px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  outline: none;
+  transition: var(--transition);
+}
+
+.chat-input-row input:focus {
+  border-color: var(--blue-600);
+}
+
+/* ===== Footer ===== */
+.page-footer {
+  padding: 28px;
+  border-top: 1px solid var(--border-color);
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ===== Toast ===== */
+.toast-wrap {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 14px 18px;
+  box-shadow: var(--shadow-hover);
+  min-width: 260px;
+  font-size: 0.85rem;
+  animation: slideInRight 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1200px) {
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pharmacy-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .diet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bmi-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: 260px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .topbar {
+    left: 0;
+  }
+
+  .main-content {
+    margin-left: 0;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    display: none;
+  }
+
+  .overlay.show {
+    display: block;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px 16px;
+  }
+
+  .hero-banner {
+    padding: 28px 24px;
+  }
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+
+  .hero-search {
+    flex-direction: column;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+
+  .greeting-banner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+
+  .greeting-title {
+    font-size: 1.4rem;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Loading pulse */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.skeleton {
+  background: var(--border-color);
+  border-radius: 6px;
+  animation: pulse 1.5s infinite;
+}
