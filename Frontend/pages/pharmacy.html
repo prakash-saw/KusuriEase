@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KusuriEase  Pharmacy-Finder</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<!-- ===== OVERLAY (mobile) ===== -->
+<div class="overlay" onclick="closeSidebar()"></div>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-wrap"></div>
+
+<!-- ===== AUTH MODAL ===== -->
+
+<!-- ===== AUTH MODAL ===== -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAuthModal()">✕</button>
+
+    <div class="modal-logo">
+      <div class="logo-text" style="font-family:var(--font-display);font-size:1.8rem;font-weight:800;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;text-align:center">
+        <svg style="display:inline;vertical-align:middle;margin-right:8px" width="28" height="28" viewBox="0 0 100 100">
+          <circle cx="35" cy="35" r="15" fill="#2563eb" opacity="0.7"/>
+          <circle cx="65" cy="35" r="15" fill="#3b82f6" opacity="0.7"/>
+          <circle cx="35" cy="65" r="15" fill="#60a5fa" opacity="0.7"/>
+          <circle cx="65" cy="65" r="15" fill="#93c5fd" opacity="0.7"/>
+          <circle cx="50" cy="50" r="8" fill="#1e3a8a"/>
+        </svg>
+        KusuriEase
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-top:6px">Your trusted health companion</p>
+    </div>
+
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-auth="login" onclick="switchAuthTab('login')">Login</button>
+      <button class="modal-tab" data-auth="register" onclick="switchAuthTab('register')">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="form-login" class="auth-form active" onsubmit="handleLogin(event)" style="display:block">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input id="loginEmail" type="email" class="form-control" placeholder="david@example.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="loginPass" type="password" class="form-control" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">
+        🔐 Login to KusuriEase
+      </button>
+      <p style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-top:14px">
+        Demo: any email + any password
+      </p>
+    </form>
+
+    <form id="form-register" class="auth-form" onsubmit="handleRegister(event)" style="display:none">
+
+  <div class="form-group">
+    <label class="form-label">Full Name</label>
+    <input id="regName" type="text" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Email Address</label>
+    <input id="regEmail" type="email" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input id="regPass" type="password" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Health Condition</label>
+    <select class="form-control">
+      <option>None</option>
+      <option>Diabetes</option>
+      <option>Hypertension</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Create Account
+  </button>
+
+</form>
+  </div>
+</div>
+
+<!-- ===== APP LAYOUT ===== -->
+<div class="app-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="35" cy="35" r="15" fill="#2563eb" opacity="0.7"/>
+          <circle cx="65" cy="35" r="15" fill="#3b82f6" opacity="0.7"/>
+          <circle cx="35" cy="65" r="15" fill="#60a5fa" opacity="0.7"/>
+          <circle cx="65" cy="65" r="15" fill="#93c5fd" opacity="0.7"/>
+          <circle cx="50" cy="50" r="8" fill="#1e3a8a"/>
+        </svg>
+      </div>
+      <span class="logo-text">KusuriEase</span>
+    </div>
+
+    <div class="sidebar-label">Clinical Sanctuary</div>
+    <p style="font-size:0.68rem;color:var(--text-muted);padding:0 20px 14px;letter-spacing:0.06em">EMPATHETIC AUTHORITY</p>
+
+    <nav class="sidebar-nav">
+      <div class="nav-item active" data-page="home" onclick="navigate('home')">
+        <span class="icon">🏠</span> Home
+      </div>
+      <div class="nav-item" data-page="medicine" onclick="navigate('medicine')">
+        <span class="icon">💊</span> Medicine Info
+      </div>
+      <div class="nav-item" data-page="pharmacy" onclick="navigate('pharmacy')">
+        <span class="icon">🏪</span> Pharmacy
+      </div>
+      <div class="nav-item" data-page="dashboard" onclick="navigate('dashboard')">
+        <span class="icon">📊</span> Health Dashboard
+      </div>
+      <div class="nav-item" data-page="diet" onclick="navigate('diet')">
+        <span class="icon">🥗</span> Diet Planner
+      </div>
+      <div class="nav-item" data-page="exercise" onclick="navigate('exercise')">
+        <span class="icon">🤖</span> AI Exercise
+      </div>
+      <div class="nav-item" data-page="bmi" onclick="navigate('bmi')">
+        <span class="icon">⚖️</span> BMI Calculator
+      </div>
+    </nav><nav class="sidebar-nav">
+      <div class="nav-item active" data-page="home" onclick="navigate('home')">
+        <span class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+    </span> Home
+      </div>
+      <div class="nav-item" data-page="medicine" onclick="navigate('medicine')">
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+           </svg>
+        </span> Medicine Info
+      </div>
+      <div class="nav-item" data-page="pharmacy" onclick="navigate('pharmacy')">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-8 2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+    </svg></span> Pharmacy
+      </div>
+      <div class="nav-item" data-page="dashboard" onclick="navigate('dashboard')">
+        <span class="icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+    </svg></span> Health Dashboard
+      </div>
+      <div class="nav-item" data-page="diet" onclick="navigate('diet')">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/>
+    </svg></span> Diet Planner
+      </div>
+      <div class="nav-item" data-page="exercise" onclick="navigate('exercise')">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 7l-1.5 7.5M6 7l1.5 7.5M3 12h18M5.5 5.5l13 13"/>
+    </svg></span> AI Exercise
+      </div>
+      <div class="nav-item" data-page="bmi" onclick="navigate('bmi')">
+        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>
+    </svg></span> BMI Calculator
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="emergency-btn">
+        🚨 Emergency Support
+      </button>
+      <div class="sidebar-links" style="margin-top:10px">
+        <a href="#">Accessibility</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="hamburger" onclick="toggleSidebar()">
+        <span></span><span></span><span></span>
+      </div>
+      <span class="topbar-title" id="topbarTitle">Home</span>
+    </div>
+    <div class="topbar-right">
+      <button class="btn-icon" onclick="navigate('medicine')" title="Saved Medicines">💾</button>
+      <button class="lang-btn">🌐 Hindi/English</button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+      <div class="user-avatar" id="userAvatar" onclick="openAuthModal('login')" title="Login">👤</div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- ============ PAGE: HOME ============ -->
+
+    <!-- ============ PAGE: PHARMACY FINDER ============ -->
+    <section class="page active" id="page-pharmacy">
+      <div class="section-header" style="margin-bottom:20px">
+        <div>
+          <h2 class="section-title">Pharmacy Availability</h2>
+          <div class="section-sub">Paracetamol 500mg • 48 locations found</div>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button class="btn btn-outline btn-sm" onclick="showToast('🗺️ Map view activated','info')">🗺️ Map View</button>
+          <button class="btn btn-primary btn-sm">☰ List View</button>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;align-items:center">
+        <button class="btn btn-outline btn-sm">⚙️ All Filters</button>
+        <button class="btn btn-sm ph-filter-btn active" style="background:var(--grad-primary);color:white" onclick="filterPharmacies('instock')">✅ In Stock ✕</button>
+        <button class="btn btn-outline btn-sm ph-filter-btn" onclick="filterPharmacies('all')">💰 Price Range ▾</button>
+        <button class="btn btn-outline btn-sm ph-filter-btn" onclick="filterPharmacies('all')">📍 Distance &lt; 5km ▾</button>
+      </div>
+
+      <div class="pharmacy-layout">
+        <!-- Map -->
+        <div class="map-placeholder">
+          <div style="position:absolute;top:35%;left:40%"><span class="map-pin" style="animation-delay:0s">📍</span></div>
+          <div style="position:absolute;top:25%;left:55%"><span class="map-pin" style="animation-delay:0.3s">📍</span></div>
+          <div style="position:absolute;top:50%;left:30%"><span class="map-pin" style="animation-delay:0.6s">📍</span></div>
+          <div style="position:absolute;top:60%;left:60%"><span class="map-pin" style="animation-delay:0.9s">📍</span></div>
+          <div style="position:absolute;top:40%;left:48%;background:white;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);font-size:0.82rem;min-width:180px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+              <span class="badge badge-green" style="font-size:0.68rem">✅ VERIFIED</span>
+              <span style="font-weight:700;color:#2563eb">₹85.00</span>
+            </div>
+            <strong style="font-size:0.88rem">Apollo Pharmacy • Bandra</strong>
+            <div style="font-size:0.75rem;color:#64748b;margin-top:4px">🚶 0.8 km away</div>
+            <button class="btn btn-primary btn-sm" style="margin-top:8px;width:100%;justify-content:center;font-size:0.78rem" onclick="showToast('✅ Medicine reserved at Apollo!','success')">Reserve Now</button>
+          </div>
+          <div style="position:absolute;bottom:16px;left:16px;font-size:0.75rem;background:rgba(255,255,255,0.9);padding:6px 10px;border-radius:8px;color:#475569">📡 Live data</div>
+        </div>
+
+        <!-- Pharmacy List -->
+        <div>
+          <div class="pharmacy-card" data-stock="instock">
+            <div class="ph-header">
+              <div>
+                <div class="ph-name">🏪 Apollo Pharmacy</div>
+                <span class="badge badge-green" style="font-size:0.68rem">✅ VERIFIED INFO</span>
+              </div>
+              <div>
+                <div class="ph-price">₹85</div>
+                <span class="badge badge-green" style="font-size:0.68rem">IN STOCK</span>
+              </div>
+            </div>
+            <div class="ph-addr">📍 Linking Road, Bandra West, Mumbai</div>
+            <div class="ph-meta">
+              <span>🕙 Open until 11 PM</span>
+              <span>🧭 0.8 km</span>
+              <button class="btn btn-primary btn-sm" onclick="showToast('🗺️ Opening directions…','info')">Get Directions</button>
+            </div>
+          </div>
+
+          <div class="pharmacy-card" data-stock="instock">
+            <div class="ph-header">
+              <div>
+                <div class="ph-name">💚 Wellness Forever</div>
+                <span class="badge badge-green" style="font-size:0.68rem">✅ VERIFIED INFO</span>
+              </div>
+              <div>
+                <div class="ph-price">₹92</div>
+                <span class="badge badge-green" style="font-size:0.68rem">IN STOCK</span>
+              </div>
+            </div>
+            <div class="ph-addr">📍 Opp. Railway Station, Bandra West</div>
+            <div class="ph-meta">
+              <span>🕙 24 Hours Open</span>
+              <span>🧭 1.2 km</span>
+              <button class="btn btn-primary btn-sm" onclick="showToast('🗺️ Opening directions…','info')">Get Directions</button>
+            </div>
+          </div>
+
+          <div class="pharmacy-card" data-stock="outofstock">
+            <div class="ph-header">
+              <div>
+                <div class="ph-name">🔵 Noble Plus</div>
+                <span class="badge badge-yellow" style="font-size:0.68rem">⏱ LAST UPDATED: 2H AGO</span>
+              </div>
+              <div>
+                <div class="ph-price" style="color:#dc2626">₹82</div>
+                <span class="badge badge-red" style="font-size:0.68rem">OUT OF STOCK</span>
+              </div>
+            </div>
+            <div class="ph-addr">📍 SV Road, Khar West</div>
+            <div class="ph-meta">
+              <span>🕙 Opens 9 AM</span>
+              <span>🧭 2.5 km</span>
+              <button class="btn btn-outline btn-sm" onclick="showToast('📬 You\'ll be notified when restocked!','info')">Check Restock Status</button>
+            </div>
+          </div>
+
+          <div class="pharmacy-card" data-stock="instock">
+            <div class="ph-header">
+              <div>
+                <div class="ph-name">🟢 MedPlus Pharmacy</div>
+                <span class="badge badge-green" style="font-size:0.68rem">✅ VERIFIED INFO</span>
+              </div>
+              <div>
+                <div class="ph-price">₹88</div>
+                <span class="badge badge-yellow" style="font-size:0.68rem">LIMITED STOCK</span>
+              </div>
+            </div>
+            <div class="ph-addr">📍 Turner Road, Bandra West</div>
+            <div class="ph-meta">
+              <span>🕙 Open until 10 PM</span>
+              <span>🧭 1.8 km</span>
+              <button class="btn btn-primary btn-sm" onclick="showToast('🗺️ Opening directions…','info')">Get Directions</button>
+            </div>
+          </div>
+
+          <div class="pharmacy-card" data-stock="instock">
+            <div class="ph-header">
+              <div>
+                <div class="ph-name">🏥 Jan Aushadhi Kendra</div>
+                <span class="badge badge-blue" style="font-size:0.68rem">GOV VERIFIED</span>
+              </div>
+              <div>
+                <div class="ph-price">₹12</div>
+                <span class="badge badge-green" style="font-size:0.68rem">IN STOCK</span>
+              </div>
+            </div>
+            <div class="ph-addr">📍 Near Municipal Hospital, Bandra</div>
+            <div class="ph-meta">
+              <span>🕙 Open 9 AM–6 PM</span>
+              <span>🧭 2.1 km</span>
+              <button class="btn btn-green btn-sm" onclick="showToast('🗺️ Opening directions…','info')">Get Directions</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-footer">
+        <span>© 2024 KusuriEase. Real-time pharmacy data.</span>
+        <span>Emergency: <strong>102</strong></span>
+      </div>
+    </section>
+
+    <!-- ============ PAGE: HEALTH DASHBOARD ============ -->
+
+  </main>
+</div>
+
+
+<script src="../js/shared.js"></script>
+<script src="../js/pharmacy.js"></script>
+</body>
+</html>
