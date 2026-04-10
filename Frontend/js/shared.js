@@ -1,4 +1,3 @@
-
 // ===== THEME MANAGEMENT =====
 const THEME_KEY = 'kusuriease_theme';
 let currentTheme = localStorage.getItem(THEME_KEY) || 'light';
@@ -17,7 +16,6 @@ function toggleTheme() {
 
 
 // ===== NAVIGATION =====
-
 function navigate(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
@@ -28,7 +26,6 @@ function navigate(pageId) {
   if (page) page.classList.add('active');
   if (navItem) navItem.classList.add('active');
 
-  // Update topbar title
   const titles = {
     home: 'Home',
     medicine: 'Medicine Info',
@@ -47,7 +44,6 @@ function navigate(pageId) {
 
 
 // ===== SIDEBAR =====
-
 function toggleSidebar() {
   document.querySelector('.sidebar').classList.toggle('open');
   document.querySelector('.overlay').classList.toggle('show');
@@ -60,7 +56,6 @@ function closeSidebar() {
 
 
 // ===== AUTH =====
-// ===== AUTH MODAL =====
 let isLoggedIn = false;
 let currentUser = null;
 
@@ -73,16 +68,29 @@ function closeAuthModal() {
   document.getElementById('authModal').classList.remove('show');
 }
 
+// FIX: inline style bhi set karo taaki display:none/block override ho sake
 function switchAuthTab(tab) {
   document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+  document.querySelectorAll('.auth-form').forEach(f => {
+    f.classList.remove('active');
+    f.style.display = 'none';
+  });
   document.querySelector(`[data-auth="${tab}"]`).classList.add('active');
-  document.getElementById('form-' + tab).classList.add('active');
+  const activeForm = document.getElementById('form-' + tab);
+  activeForm.classList.add('active');
+  activeForm.style.display = 'block';
 }
 
 function handleLogin(e) {
   e.preventDefault();
-  const email = document.getElementById('loginEmail').value;
+  const email = document.getElementById('loginEmail').value.trim();
+  const pass  = document.getElementById('loginPass').value;
+
+  if (!email || !pass) {
+    showToast('Please fill all fields.', 'warn');
+    return;
+  }
+
   const name = email.split('@')[0];
   isLoggedIn = true;
   currentUser = { name: name.charAt(0).toUpperCase() + name.slice(1), email };
@@ -94,10 +102,46 @@ function handleLogin(e) {
 
 function handleRegister(e) {
   e.preventDefault();
-  const name = document.getElementById('regName').value;
-  const email = document.getElementById('regEmail').value;
+
+  const name        = document.getElementById('regName').value.trim();
+  const email       = document.getElementById('regEmail').value.trim();
+  const phone       = document.getElementById('regPhone').value.trim();
+  const dob         = document.getElementById('regDob').value;
+  const gender      = document.getElementById('regGender').value;
+  const blood       = document.getElementById('regBlood').value;
+  const condition   = document.getElementById('regCondition').value;
+  const allergies   = document.getElementById('regAllergies').value.trim();
+  const pass        = document.getElementById('regPass').value;
+  const passConfirm = document.getElementById('regPassConfirm').value;
+
+  if (!name || !email || !phone || !dob || !gender || !pass || !passConfirm) {
+    showToast('⚠️ Please fill all required fields.', 'warn');
+    return;
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    showToast('❌ Please enter a valid email address.', 'error');
+    return;
+  }
+
+  if (!/^[\d\s\+\-\(\)]{7,15}$/.test(phone)) {
+    showToast('❌ Please enter a valid phone number.', 'error');
+    return;
+  }
+
+  if (pass.length < 8) {
+    showToast('❌ Password must be at least 8 characters.', 'error');
+    return;
+  }
+
+  if (pass !== passConfirm) {
+    showToast('❌ Passwords do not match.', 'error');
+    return;
+  }
+
   isLoggedIn = true;
-  currentUser = { name, email };
+  currentUser = { name, email, phone, dob, gender, blood, condition, allergies };
+
   updateUserUI();
   closeAuthModal();
   showToast('🎉 Account created! Welcome, ' + name + '!');
@@ -119,7 +163,6 @@ function updateGreeting() {
 
 
 // ===== TOAST =====
-// ===== TOAST =====
 function showToast(msg, type = 'info') {
   const icons = { info: 'ℹ️', success: '✅', warn: '⚠️', error: '❌' };
   const toast = document.createElement('div');
@@ -131,7 +174,6 @@ function showToast(msg, type = 'info') {
 
 
 // ===== SEARCH =====
-// ===== SEARCH HOME =====
 function homeSearch() {
   const val = document.getElementById('homeSearchInput').value;
   if (val.trim()) searchMedicine(val);
@@ -139,13 +181,11 @@ function homeSearch() {
 
 
 // ===== INIT =====
-// ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
   applyTheme(currentTheme);
   initMedicinePage();
   navigate('bmi');
 
-  // Enter key for search
   document.getElementById('homeSearchInput')?.addEventListener('keydown', e => {
     if (e.key === 'Enter') homeSearch();
   });
@@ -154,12 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter') sendExerciseMsg();
   });
 
-  // Close modal on overlay click
   document.getElementById('authModal')?.addEventListener('click', function(e) {
     if (e.target === this) closeAuthModal();
   });
 
-  // Animate stats on load
   setTimeout(() => {
     document.querySelectorAll('.progress-fill').forEach(bar => {
       const target = bar.getAttribute('data-width') || bar.style.width;
@@ -168,7 +206,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, 500);
 
-  // Generate initial diet plan
   generateDietPlan();
 });
-
