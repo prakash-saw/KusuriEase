@@ -1,0 +1,4 @@
+$kind: http-request
+method: POST
+url: 'http://localhost:5000/api/auth/signup'
+order: 1000
