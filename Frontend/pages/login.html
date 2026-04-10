@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KusuriEase Login & Register</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  
+</head>
+<body>
+
+<!-- ===== TOAST ===== -->
+<div class="toast-wrap"></div>
+
+<div class="login-page-wrap">
+  <div class="modal" style="position:relative;box-shadow:none;padding:36px 32px;">
+    <div class="modal-logo">
+      <div class="logo-text" style="font-family:var(--font-display);font-size:1.8rem;font-weight:800;background:var(--grad-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;text-align:center">
+        <svg style="display:inline;vertical-align:middle;margin-right:8px" width="28" height="28" viewBox="0 0 100 100">
+          <circle cx="35" cy="35" r="15" fill="#2563eb" opacity="0.7"/>
+          <circle cx="65" cy="35" r="15" fill="#3b82f6" opacity="0.7"/>
+          <circle cx="35" cy="65" r="15" fill="#60a5fa" opacity="0.7"/>
+          <circle cx="65" cy="65" r="15" fill="#93c5fd" opacity="0.7"/>
+          <circle cx="50" cy="50" r="8" fill="#1e3a8a"/>
+        </svg>
+        KusuriEase
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-top:6px;text-align:center;">Your trusted health companion</p>
+    </div>
+
+    <div class="modal-tabs">
+      <button class="modal-tab active" data-auth="login" onclick="switchAuthTab('login')">Login</button>
+      <button class="modal-tab" data-auth="register" onclick="switchAuthTab('register')">Register</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="form-login" class="auth-form active" onsubmit="handleLogin(event)" style="display:block">
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input id="loginEmail" type="email" class="form-control" placeholder="david@example.com" required />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input id="loginPass" type="password" class="form-control" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:4px">
+         Login to KusuriEase
+      </button>
+      <p style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-top:14px">
+        Demo: any email + any password
+      </p>
+    </form>
+
+    <form id="form-register" class="auth-form" onsubmit="handleRegister(event)" style="display:none">
+
+  <div class="form-group">
+    <label class="form-label">Full Name</label>
+    <input id="regName" type="text" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Email Address</label>
+    <input id="regEmail" type="email" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Password</label>
+    <input id="regPass" type="password" class="form-control" required />
+  </div>
+
+  <div class="form-group">
+    <label class="form-label">Health Condition</label>
+    <select class="form-control">
+      <option>None</option>
+      <option>Diabetes</option>
+      <option>Hypertension</option>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">
+    Create Account
+  </button>
+
+</form>
+
+    <p style="text-align:center;margin-top:16px;font-size:0.82rem;color:var(--text-muted)">
+      <a href="index.html" style="color:var(--primary)">← Back to Home</a>
+    </p>
+  </div>
+</div>
+
+
+<script src="../js/shared.js"></script>
+</body>
+</html>
